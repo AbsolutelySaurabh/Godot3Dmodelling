@@ -1,0 +1,226 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://3DModel/SpaceCraft_01.msh" type="Mesh" id=1]
+[ext_resource path="res://3DModel/SpaceCraft_01_Texture_01.png" type="Texture" id=2]
+[ext_resource path="res://Textures/buttons/touch_left.png" type="Texture" id=3]
+[ext_resource path="res://Textures/buttons/touch_left_pressed.png" type="Texture" id=4]
+[ext_resource path="res://Textures/buttons/touch_right.png" type="Texture" id=5]
+[ext_resource path="res://Textures/buttons/touch_right_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Textures/buttons/touch_jump.png" type="Texture" id=7]
+[ext_resource path="res://Textures/buttons/touch_jump_pressed.png" type="Texture" id=8]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Spatial
+
+func _ready():
+	set_process(true)
+	
+func _process(delta):
+	if Input.is_action_pressed(\"ui_right\"):
+		get_node(\"SpacecraftSpatial\").rotate_y(0.06)
+	
+	if Input.is_action_pressed(\"ui_left\"):
+		get_node(\"SpacecraftSpatial\").rotate_y(-0.06)
+	
+	if Input.is_action_pressed(\"ui_up\"):
+		get_node(\"SpacecraftSpatial\").rotate_z(0.06)
+		
+	if Input.is_action_pressed(\"ui_down\"):
+		get_node(\"SpacecraftSpatial\").rotate_z(-0.06)
+		
+	if Input.is_mouse_button_pressed(3):
+		get_node(\"SpacecraftSpatial\").rotate_x(-0.06)
+	
+	if Input.is_action_pressed(\"btn_left\"):
+		get_node(\"SpacecraftSpatial\").rotate_y(-0.06)
+		
+	if Input.is_action_pressed(\"btn_right\"):
+		get_node(\"SpacecraftSpatial\").rotate_y(0.06)
+		
+	if Input.is_action_pressed(\"btn_up\"):
+		get_node(\"SpacecraftSpatial\").rotate_z(0.06)
+
+	if Input.is_action_pressed(\"btn_down\"):
+		get_node(\"SpacecraftSpatial\").rotate_z(-0.06)
+"
+
+[sub_resource type="FixedMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1.0
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1.0
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 2 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[node name="GameNode" type="Node"]
+
+[node name="GameSpatial" type="Spatial" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = SubResource( 1 )
+
+[node name="SpacecraftSpatial" type="Spatial" parent="GameSpatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.998955, 0, 0.0457044, 0, 1, 0, -0.0457044, 0, 0.998955, -0.704327, 0.150305, 0 )
+
+[node name="SpaceCraftMesh" type="MeshInstance" parent="GameSpatial/SpacecraftSpatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.0841887, 0.110966, -0.990252, 0.159064, 0.982533, 0.0965775, 0.983672, -0.149382, -0.100369, -6.85125, -0.00354388, -0.551651 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 1 )
+mesh/skeleton = NodePath("..")
+material/0 = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="GameSpatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.142118, -0.0820923, 0.98644, -0.120687, 0.987683, 0.0995835, -0.982465, -0.133203, 0.13046, 23.5094, 4.46464, 2.35388 )
+projection = 0
+fov = 54.8438
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="GameSpatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.032919, 0.585346, 0.810115, -0.472311, -0.723448, 0.503532, 0.880817, -0.366051, 0.300281, 14.9478, 12.8325, -3.14796 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="left_inputs" type="Node2D" parent="gui"]
+
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="left" type="TouchScreenButton" parent="gui/left_inputs"]
+
+transform/pos = Vector2( 1475.87, 760.401 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 4 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = "btn_left"
+visibility_mode = 0
+
+[node name="right" type="TouchScreenButton" parent="gui/left_inputs"]
+
+transform/pos = Vector2( 1808.5, 748.82 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 6 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = "btn_right"
+visibility_mode = 0
+
+[node name="up" type="TouchScreenButton" parent="gui/left_inputs"]
+
+transform/pos = Vector2( 1655.84, 574.639 )
+transform/scale = Vector2( 0.472798, 0.481782 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 8 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = "btn_up"
+visibility_mode = 0
+
+[node name="down" type="TouchScreenButton" parent="gui/left_inputs"]
+
+transform/pos = Vector2( 1651.39, 970.75 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+pressed = ExtResource( 8 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = "btn_down"
+visibility_mode = 0
+
+
