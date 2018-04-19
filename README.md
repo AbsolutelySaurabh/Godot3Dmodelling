@@ -1,4 +1,4 @@
-This repository contains my saple Godot game engine projects, can easily be deployed onto Android.
+This repository contains my sample Godot game engine projects, can easily be deployed onto Android.
 
 For,
 First Person Shooter:
