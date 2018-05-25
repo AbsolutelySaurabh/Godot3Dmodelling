@@ -13,6 +13,13 @@ Features
 - Step up stairs and slopes
 - View model (first person gun), dynamic toggleable flashlight with shadows
 
+Screenshots
+====
+  <img  src="screenshots/godot_fps.png" width="900" height="500" >
+  <img  src="screenshots/godot_plane.png" width="900" height="500" >
+  <img  src="screenshots/godot_touch_screen.png" width="900" height="500" >
+
+
 Keys
 ====
 
